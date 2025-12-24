@@ -29,7 +29,7 @@
 
 % Section references
 \def\Snospace~{\S{}}
-\renewcommand*\sectionautorefname{\Snospace}
+\renewcommand*{\sectionautorefname}{\Snospace}
 \def\sectionautorefname{\Snospace}
 \def\subsectionautorefname{\Snospace}
 \def\subsubsectionautorefname{\Snospace}
@@ -44,7 +44,7 @@
 % sema
 \newcommand{\shl}{\ \cc{<}\cc{<}\ }
 \newcommand{\shr}{\ \cc{>}\cc{>}\ }
-\newcommand{\x}{$\times$\xspace}
+\newcommand{\x}{$\\times$\\xspace}
 
 \if 0
 \renewcommand{\topfraction}{0.9}
@@ -73,7 +73,7 @@
 \pdfgentounicode=1
 
 % Table column type
-\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\arraybackslash\hspace{0pt}}p{#1}}
 
 % PDF and plot inclusion
 \newcommand{\includepdf}[1]{
@@ -120,29 +120,30 @@
 }
 
 \newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
-\newcommand{\V}{\checkmark}
-\newcommand{\X}{{\footnotesize $\times$}\xspace}
-\renewcommand{\O}{\phantom{0}}
+\newcommand{\V}{\\checkmark}
+\newcommand{\X}{{\\footnotesize $\\times$}\\xspace}
+\renewcommand{\O}{\\phantom{0}}
 
+%%
 %% units
-\newcommand{\B}{\,\text{B}\xspace}
-\newcommand{\K}{\,\text{K}\xspace}
-\newcommand{\M}{\,\text{M}\xspace}
-\newcommand{\T}{\,\text{T}\xspace}
-\newcommand{\KB}{\,\text{KB}\xspace}
-\newcommand{\MB}{\,\text{MB}\xspace}
-\newcommand{\GB}{\,\text{GB}\xspace}
-\newcommand{\TB}{\,\text{TB}\xspace}
+\newcommand{\B}{\\ \\text{B}\\xspace}
+\newcommand{\K}{\\ \\text{K}\\xspace}
+\newcommand{\M}{\\ \\text{M}\\xspace}
+\newcommand{\T}{\\ \\text{T}\\xspace}
+\newcommand{\KB}{\\ \\text{KB}\\xspace}
+\newcommand{\MB}{\\ \\text{MB}\\xspace}
+\newcommand{\GB}{\\ \\text{GB}\\xspace}
+\newcommand{\TB}{\\ \\text{TB}\\xspace}
 
-\newcommand{\Bs}{\,\text{B/s}\xspace}
-\newcommand{\KBs}{\,\text{KB/s}\xspace}
-\newcommand{\MBs}{\,\text{MB/s}\xspace}
-\newcommand{\GBs}{\,\text{GB/s}\xspace}
+\newcommand{\Bs}{\\ \\text{B/s}\\xspace}
+\newcommand{\KBs}{\\ \\text{KB/s}\\xspace}
+\newcommand{\MBs}{\\ \\text{MB/s}\\xspace}
+\newcommand{\GBs}{\\ \\text{GB/s}\\xspace}
 
 % boxbeg/end
 \newcommand{\boxbeg}{
 \vspace{2px}
-\noindent\begin{tabular}{|l|}\hline
+\noindent\begin{tabular}{|l|}\\hline
 \begin{minipage}{3.2in}
 \vspace{2px}
 \noindent
@@ -157,9 +158,9 @@
 
 % paragraph style
 \makeatletter
-\renewcommand{\paragraph}{%
-  \@startsection{paragraph}{4}%
-  {\z@}{0.5ex \@plus 0.5ex \@minus .2ex}{-1em}%
-  {\normalfont\normalsize\bfseries}%
+\renewcommand{\paragraph}{
+  \@startsection{paragraph}{4}
+  {\z@}{0.5ex \@plus 0.5ex \@minus .2ex}{-1em}
+  {\normalfont\normalsize\bfseries}
 }
 \makeatother

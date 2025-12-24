@@ -5,7 +5,7 @@
 \PassOptionsToPackage{breaklinks,colorlinks}{hyperref}
 
 % Load basic packages first
-\usepackage{amsmath,amsopn}
+\usepackage{amsmath,amsopn,amsfonts}
 \ifacmccs
 \usepackage{epsfig,endnotes}
 \else
@@ -16,16 +16,24 @@
 \fi
 \fi
 
-\usepackage{algorithm}
+% Fonts
+\usepackage{inconsolata}
+\usepackage{newtxmath}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{bm} % bold math
+
+% Algorithms
 \usepackage{algorithmic}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+
 \usepackage{latexsym}
 \usepackage{subcaption}
 \usepackage{endnotes,microtype,xspace,graphicx,fancyvrb,multirow}
 \usepackage{booktabs}
 \usepackage{array,underscore,relsize}
 \usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
+
 \usepackage{pifont}
 \usepackage[labelfont=bf,font=small,skip=5pt]{caption}
 
@@ -38,8 +46,21 @@
 \setlength{\marginparwidth}{2cm}
 \usepackage[textsize=tiny]{todonotes}
 
-% Load url package
+% URL and links
 \usepackage{url}
+\usepackage{breakurl}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,      % section links, theorem refs, etc.
+    citecolor=blue,      % citation links
+    filecolor=blue,
+    urlcolor=black        % url links
+}
+\usepackage[capitalise]{cleveref}
+\crefformat{section}{\S#2#1#3}
+\crefmultiformat{section}{\S\S#2#1#3}{ and~#2#1#3}{, #2#1#3}{, and~#2#1#3}
+
 
 % Load natbib (conditionally)
 \ifacmccs
@@ -71,10 +92,7 @@
 \usepackage{balance}
 
 % Use \num{123456} -> 123,456
-\sisetup{group-separator={,},group-minimum-digits={3},output-decimal-marker={.}}
-
-% Make sure this is in your main .tex file, not in pkgs.tex
-% \bibliography{p,conf}
+\sisetup{group-separator={,},group-minimum-digits={3},output-decimal-marker=.}
 
 % Before loading hyperref, add:
 % \makeatletter
@@ -88,27 +106,25 @@
 
 % Then your existing hyperref setup
 \usepackage{lineno}
-\usepackage{hyperref}
-\hypersetup{
-    colorlinks=true,
-    linkcolor=blue,      % section links, theorem refs, etc.
-    citecolor=blue,      % citation links
-    filecolor=blue,      
-    urlcolor=black        % url links
-}
-\usepackage[capitalise]{cleveref}
-\crefformat{section}{\S#2#1#3}
-\crefmultiformat{section}{\S\S#2#1#3}{ and~#2#1#3}{, #2#1#3}{, and~#2#1#3}
 
-% Table
+% Table related packages
 \usepackage{tabularx}
 \usepackage{makecell}
 \usepackage{adjustbox}
 \usepackage[normalem]{ulem}
 \usepackage{tcolorbox}
+\usepackage{colortbl}
+\usepackage{listings}
+\usepackage{wrapfig2}
+\usepackage{setspace}
+\usepackage{soul}
+\usepackage{lipsum}
+\usepackage{float}
 
 % For native LaTeX plots
 \usepackage{tikz}
+\usetikzlibrary{patterns,calc,positioning,fit,shapes,matrix,arrows.meta,decorations.markings}
 \usepackage{pgfplots}
+\usepackage{pgfplotstable}
 \usepgfplotslibrary{groupplots,units,fillbetween,statistics}
 \pgfplotsset{compat=1.18}
