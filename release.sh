@@ -1,3 +1,3 @@
 #!/bin/bash
 
-git archive -o die.tar.gz HEAD
+git archive -o dead.tar.gz HEAD

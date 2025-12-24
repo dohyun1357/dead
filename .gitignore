@@ -11,15 +11,13 @@
 /*.toc
 /*.pdf
 /bibexport.bib
-/die.tar.gz
+/dead.tar.gz
 /rev.tex
 /abstract.txt
-/code/*.tex
-!/code/fmt.tex
 !/figures/*.pdf
 !/data/*.pdf
-.latexrun.db
 /main.synctex.gz
 /auto
+/latex.out
 
 .vscode/

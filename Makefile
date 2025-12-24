@@ -1,17 +1,21 @@
 MAIN ?= main
 DIFF ?= HEAD^
 DEPS := rev.tex abstract.txt
-LTEX := --latex-args="-synctex=1 -shell-escape"
-BTEX := --bibtex-args="-min-crossrefs=99"
+
+OUTDIR ?= latex.out
+LATEXMK ?= latexmk
+LATEXMK_OPTS ?= -pdf
+LATEXMK_ENV := TEXINPUTS="sty:"
+LATEXMK_CMD := $(LATEXMK_ENV) $(LATEXMK) $(LATEXMK_OPTS)
+
 SHELL:= $(shell echo $$SHELL)
 
 all: $(DEPS) ## generate a pdf
-	@TEXINPUTS="sty:" bin/latexrun $(LTEX) $(BTEX) $(MAIN)
-	cp latex.out/$(MAIN).synctex.gz .
+	@$(LATEXMK_CMD) $(MAIN).tex
 
 submit: $(DEPS) ## proposal function
 	@for f in $(wildcard submit-*.tex); do \
-		TEXINPUTS="sty:" bin/latexrun $$f; \
+		$(LATEXMK_CMD) $$f; \
 	done
 
 diff: $(DEPS) ## generate diff-highlighed pdf
@@ -28,24 +32,18 @@ rev.tex: FORCE
 
 draft: $(DEPS) ## generate pdf with a draft info
 	echo -e '\\newcommand*{\\DRAFT}{}' >> rev.tex
-	@TEXINPUTS="sty:" bin/latexrun $(BTEX) $(MAIN)
+	@$(LATEXMK_CMD) $(MAIN).tex
 
 watermark: $(DEPS) ## generate pdf with a watermark
 	echo -e '\\usepackage[firstpage]{draftwatermark}' >> rev.tex
-	@TEXINPUTS="sty:" bin/latexrun $(BTEX) $(MAIN)
-
-spell: ## run a spell check
-	@for i in *.tex figures/*.tex; do bin/aspell.sh tex $$i; done
-	@for i in *.tex; do bin/double.pl $$i; done
-	@for i in *.tex; do bin/abbrv.pl  $$i; done
-	@bin/hyphens.sh *.tex
-	@pdftotext $(MAIN).pdf /dev/stdout | grep '??'
+	@$(LATEXMK_CMD) $(MAIN).tex
 
 bib: all ## print bib used in the paper
-	bibexport latex.out/$(MAIN).aux
+	bibexport $(OUTDIR)/$(MAIN).aux
 
 clean: ## clean up
-	@bin/latexrun --clean
+	@$(LATEXMK_ENV) $(LATEXMK) -c $(MAIN).tex
+	@rm -rf $(OUTDIR)
 	rm -f abstract.txt
 	rm -f $(MAIN).synctex.gz
 
